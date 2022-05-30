@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 const AllMassages = ({ socket }) => {
   const [massages, setMassages] = useState([]);
+  console.log(massages);
   useEffect(() => {
     socket.on("allMassages", (massage) => {
       if (massage) setMassages((massages) => [...massages, ...massage]);
