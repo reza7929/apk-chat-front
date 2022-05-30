@@ -2,6 +2,7 @@ import { api_backend } from "../utils/constance";
 import io from "socket.io-client";
 import SendMassage from "../components/chat/SendMassage";
 import AllMassages from "../components/chat/AllMassages";
+import { useEffect } from "react";
 
 export default function Chat() {
   const socket = io(api_backend);
