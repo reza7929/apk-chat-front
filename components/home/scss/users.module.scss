@@ -1,0 +1,41 @@
+.container {
+    width: 50%;
+    height: 100%;
+    background-color: blue;
+    text-align: center;
+}
+.persons {
+    display: flex;
+    align-items: center;
+    padding: 20px 20px 10px;
+    border-bottom: 2px solid rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+.left_side {
+    position: relative;
+} 
+
+.icon {
+    width: 50px !important;
+    height: 50px !important;
+    margin-right: 15px;
+
+    &_on_line {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        bottom: 10px;
+        right: 15px;
+        background-color: gray;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &_inner {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+    }
+}

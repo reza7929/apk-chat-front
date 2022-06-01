@@ -2,43 +2,53 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { api_backend } from "../utils/constance";
 import jwt_decode from "jwt-decode";
-import Link from "next/link";
+import HomeLayout from "../layouts/home-layout";
+import io from "socket.io-client";
+import Users from "../components/home/users";
+import ChatSection from "../components/home/chat-section";
+import { socketIO } from "../utils/socket-io";
 
 export default function Home() {
-  const [data, setData] = useState([]);
-  const [userInfo, setUserInfo] = useState([]);
+  const [usersData, setUsersData] = useState([]);
+  const [userInfo, setUserInfo] = useState();
+  const [isActiveChat, setIsActiveChat] = useState(false);
+  const [oppositID, setOppositeID] = useState();
+  const [isPageReady, setIsPageReady] = useState(false);
+  const socket = socketIO();
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const res = await axios.post(api_backend + "/login/users-info");
-        setData(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getData();
     const token = localStorage.getItem("token");
     const decoded = jwt_decode(token);
     setUserInfo(decoded);
+    socket.emit("allUsers");
+    socket.on("allUsersRes", (users) => {
+      setUsersData(users);
+      console.log(usersData);
+    });
   }, []);
+  const removeElement = (array, elem) => {
+    let newData = [];
+    array.map((item) => {
+      if (item.userName != elem) newData.push(item);
+    });
+
+    return newData;
+  };
 
   return (
-    <>
-      <div>Home</div>
-      {data.map((item) => {
-        if (item.id != userInfo.id)
-          return (
-            <Link
-              key={item.userName}
-              href={`/chat?id=${item.id}&userName=${item.userName}`}
-            >
-              <a>
-                <p>{item.userName}</p>
-                {console.log(item.isOnline)}
-              </a>
-            </Link>
-          );
-      })}
-    </>
+    <HomeLayout>
+      <Users
+        users={removeElement(usersData, userInfo?.userName)}
+        userInfo={userInfo}
+        setIsActiveChat={setIsActiveChat}
+        setOppositeID={setOppositeID}
+      />
+      <ChatSection
+        users={usersData}
+        socket={socket}
+        isActiveChat={isActiveChat}
+        setIsActiveChat={setIsActiveChat}
+        oppositID={oppositID}
+      />
+    </HomeLayout>
   );
 }
