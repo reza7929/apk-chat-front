@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { networkID } from "../../utils/network-id";
 import classes from "./scss/all-massages.module.scss";
 
 const AllMassages = ({ socket, userInfo, oppositID = 0 }) => {
   const [massages, setMassages] = useState([]);
-  // console.log(massages);
+  const messagesEndRef = useRef();
   useEffect(() => {
     console.log({ oppositID });
     socket.emit("allMassages", {
@@ -15,11 +15,32 @@ const AllMassages = ({ socket, userInfo, oppositID = 0 }) => {
     socket.on(netID, (massage) => {
       setMassages([]);
       if (massage) setMassages((massages) => [...massages, ...massage]);
+      scrollToBottom();
     });
     return () => {
       socket.off(netID);
     };
   }, [oppositID]);
+  const scrollToBottom = () => {
+    console.log("scroll function");
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+  const getTime = (time) => {
+    const date = new Date(time);
+    let kind = "AM";
+    // Hours part from the timestamp
+    let hours = date.getHours();
+    if (hours == 0) hours = 12;
+    else {
+      if (hours > 11) kind = "PM";
+      if (hours > 12) hours = hours - 12;
+    }
+    // Minutes part from the timestamp
+    let minutes = date.getMinutes();
+    if (minutes < 10) minutes = "0" + minutes;
+
+    return `${hours}:${minutes} ${kind}`;
+  };
 
   return (
     <div className={classes.container}>
@@ -34,10 +55,15 @@ const AllMassages = ({ socket, userInfo, oppositID = 0 }) => {
               }`}
             >
               {massage.text}
+              <br />
+              <span className={classes.massage_box_time}>
+                {getTime(massage.time)}
+              </span>
             </p>
           </div>
         );
       })}
+      <div ref={messagesEndRef} />
     </div>
   );
 };

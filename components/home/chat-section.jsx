@@ -32,7 +32,9 @@ const ChatSection = ({
           <SendMassage socket={socket} oppositID={oppositID} />
         </div>
       ) : (
-        <p>برای شروع گفتگو لطفا یکی از کاربران مقابل را انتخاب کنید</p>
+        <div className={classes.select_chat}>
+          <p>برای شروع گفتگو لطفا یکی از کاربران مقابل را انتخاب کنید</p>
+        </div>
       )}
     </div>
   );

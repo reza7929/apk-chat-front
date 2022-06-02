@@ -1,8 +1,18 @@
 .container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    background-color: #f0f2f5;
+    border-left: 1px solid #d1d7db;
+    padding: 10px 16px;
 }
-.header_text {
-    width: 100%;
-    text-align: center;
+.user_box {
+    display: flex;
+    align-items: center;
+
+    &_icon {
+        width: 40px !important;
+        height: 40px !important;
+        margin-right: 15px;
+    }
 }

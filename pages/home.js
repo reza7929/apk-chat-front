@@ -15,8 +15,8 @@ export default function Home() {
   const [isActiveChat, setIsActiveChat] = useState(false);
   const [oppositID, setOppositeID] = useState();
   const [isPageReady, setIsPageReady] = useState(false);
-  const socket = socketIO();
   checkAuth(setIsPageReady);
+  const socket = socketIO();
   useEffect(() => {
     const token = localStorage.getItem("token");
     const decoded = jwt_decode(token);

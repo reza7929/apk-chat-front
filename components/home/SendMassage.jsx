@@ -32,6 +32,7 @@ const SendMassage = ({ socket, oppositID }) => {
   return (
     <div className={classes.container}>
       <Input
+        disableUnderline
         value={massage}
         onChange={(e) => setMassage(e.target.value)}
         className={classes.input}

@@ -1,8 +1,14 @@
 .container {
-    width: 50%;
+    width: 35%;
     height: 100%;
-    background-color: blue;
     text-align: center;
+}
+.user_text {
+    background-color: #f0f2f5;
+    padding: 18px 0;
+}
+.user_wrapper {
+    overflow-y: scroll;
 }
 .persons {
     display: flex;
