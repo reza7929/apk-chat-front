@@ -7,6 +7,7 @@ import io from "socket.io-client";
 import Users from "../components/home/users";
 import ChatSection from "../components/home/chat-section";
 import { socketIO } from "../utils/socket-io";
+import { checkAuth } from "../utils/check-auth";
 
 export default function Home() {
   const [usersData, setUsersData] = useState([]);
@@ -15,6 +16,7 @@ export default function Home() {
   const [oppositID, setOppositeID] = useState();
   const [isPageReady, setIsPageReady] = useState(false);
   const socket = socketIO();
+  checkAuth(setIsPageReady);
   useEffect(() => {
     const token = localStorage.getItem("token");
     const decoded = jwt_decode(token);
@@ -33,6 +35,8 @@ export default function Home() {
 
     return newData;
   };
+
+  if (!isPageReady) return <div>loading...</div>;
 
   return (
     <HomeLayout>
