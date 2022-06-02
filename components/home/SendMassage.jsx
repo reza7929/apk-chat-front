@@ -6,6 +6,7 @@ import classes from "./scss/send-massage.module.scss";
 const SendMassage = ({ socket, oppositID }) => {
   const [massage, setMassage] = useState();
   const handleSubmitBtn = () => {
+    console.log({ oppositID });
     if (massage) {
       socket.emit("sendMessage", { massage, oppositID });
       socket.emit("allMassages", {

@@ -1,27 +1,32 @@
 import { useState, useEffect } from "react";
+import { networkID } from "../../utils/network-id";
 import classes from "./scss/all-massages.module.scss";
 
-const AllMassages = ({ socket, oppositID }) => {
+const AllMassages = ({ socket, userInfo, oppositID = 0 }) => {
   const [massages, setMassages] = useState([]);
-  console.log(massages);
+  // console.log(massages);
   useEffect(() => {
+    console.log({ oppositID });
     socket.emit("allMassages", {
       oppositID,
     });
-    socket.on("allMassagesRes", (massage) => {
+    const netID = networkID(userInfo.id, oppositID);
+    console.log({ netID });
+    socket.on(netID, (massage) => {
       setMassages([]);
       if (massage) setMassages((massages) => [...massages, ...massage]);
     });
+    return () => {
+      socket.off(netID);
+    };
   }, [oppositID]);
 
   return (
     <div className={classes.container}>
       {massages?.map((massage, index) => {
-        console.log(massage);
         return (
-          <div className={classes.massage_box}>
+          <div className={classes.massage_box} key={index}>
             <p
-              key={index}
               className={`${classes.massage_box_text} ${
                 massage.fromID != oppositID
                   ? classes.user_side

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 const ChatSection = ({
   socket,
   users,
+  userInfo,
   isActiveChat,
   setIsActiveChat,
   oppositID,
@@ -23,7 +24,11 @@ const ChatSection = ({
             oppositID={oppositID}
             setIsActiveChat={setIsActiveChat}
           />
-          <AllMassages socket={socket} oppositID={oppositID} />
+          <AllMassages
+            socket={socket}
+            userInfo={userInfo}
+            oppositID={oppositID}
+          />
           <SendMassage socket={socket} oppositID={oppositID} />
         </div>
       ) : (
