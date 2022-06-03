@@ -73,12 +73,14 @@ const RegisterDataSet = ({ setIsRegister }) => {
           onChange={(e) => {
             setData({ ...data, pass: e.target.value });
           }}
+          type="password"
         />
         <TextInput
           label="تکرار رمز عبور"
           onChange={(e) => {
             setData({ ...data, confirmPass: e.target.value });
           }}
+          type="password"
         />
         {isLoading ? (
           <CircularProgress className={classes.loader} />
