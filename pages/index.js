@@ -5,8 +5,6 @@ import Users from "../components/home/users";
 import ChatSection from "../components/home/chat-section";
 import { socketIO } from "../utils/socket-io";
 import Head from "next/head";
-import { api_backend } from "../utils/constance";
-import { io } from "socket.io-client";
 import Loader from "../components/common/loader";
 
 export default function Home() {
@@ -18,6 +16,7 @@ export default function Home() {
   const socket = socketIO();
   useEffect(() => {
     const token = localStorage.getItem("token");
+    if (!token) return;
     const decoded = jwt_decode(token);
     setUserInfo(decoded);
     socket.emit("allUsers");
@@ -51,14 +50,14 @@ export default function Home() {
         setIsActiveChat={setIsActiveChat}
         setOppositeID={setOppositeID}
       />
-      {/* <ChatSection
+      <ChatSection
         users={usersData}
         userInfo={userInfo}
         socket={socket}
         isActiveChat={isActiveChat}
         setIsActiveChat={setIsActiveChat}
         oppositID={oppositID}
-      /> */}
+      />
     </HomeLayout>
   );
 }
