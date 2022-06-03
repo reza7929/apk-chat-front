@@ -13,7 +13,6 @@ export default function Home() {
   const [oppositID, setOppositeID] = useState();
   const [isPageReady, setIsPageReady] = useState(false);
   const socket = socketIO();
-  return;
   useEffect(() => {
     const token = localStorage.getItem("token");
     const decoded = jwt_decode(token);
@@ -21,8 +20,8 @@ export default function Home() {
     socket.emit("allUsers");
     socket.on("allUsersRes", (users) => {
       setUsersData(users);
-      console.log(usersData);
     });
+    setIsPageReady(true);
   }, []);
   const removeElement = (array, elem) => {
     let newData = [];

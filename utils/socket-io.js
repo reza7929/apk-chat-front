@@ -16,7 +16,7 @@ export const socketIO = async () => {
     const socket = io(api_backend, {
       query: `fromID=${decoded.id}`,
     });
-    setIsPageReady(true);
+
     return socket;
   } catch (err) {
     console.log(err);
