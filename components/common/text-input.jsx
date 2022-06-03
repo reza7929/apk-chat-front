@@ -11,6 +11,7 @@ const TextInput = ({ ...props }) => {
       InputProps={{
         disableUnderline: true,
       }}
+      fullWidth
       {...props}
     />
   );
