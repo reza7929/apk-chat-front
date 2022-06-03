@@ -5,6 +5,9 @@ import Users from "../components/home/users";
 import ChatSection from "../components/home/chat-section";
 import { socketIO } from "../utils/socket-io";
 import Head from "next/head";
+import { api_backend } from "../utils/constance";
+import { io } from "socket.io-client";
+import Loader from "../components/common/loader";
 
 export default function Home() {
   const [usersData, setUsersData] = useState([]);
@@ -32,7 +35,7 @@ export default function Home() {
     return newData;
   };
 
-  if (!isPageReady) return <div>loading...</div>;
+  if (!isPageReady) return <Loader />;
 
   return (
     <HomeLayout>
@@ -48,14 +51,14 @@ export default function Home() {
         setIsActiveChat={setIsActiveChat}
         setOppositeID={setOppositeID}
       />
-      <ChatSection
+      {/* <ChatSection
         users={usersData}
         userInfo={userInfo}
         socket={socket}
         isActiveChat={isActiveChat}
         setIsActiveChat={setIsActiveChat}
         oppositID={oppositID}
-      />
+      /> */}
     </HomeLayout>
   );
 }

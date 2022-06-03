@@ -4,22 +4,24 @@ import { api_backend } from "./constance";
 import Router from "next/router";
 import axios from "axios";
 
-export const socketIO = async () => {
-  if (typeof window === "undefined") return;
-  const token = window.localStorage.getItem("token");
-  if (!token) return await Router.push("/auth");
+const checkAuth = async (token) => {
   try {
     await axios.post(api_backend + "/auth", {
-      token: window.localStorage.getItem("token"),
+      token,
     });
-    const decoded = jwt_decode(token);
-    const socket = io(api_backend, {
-      query: `fromID=${decoded.id}`,
-    });
-
-    return socket;
   } catch (err) {
     console.log(err);
-    return await Router.push("/auth");
+    return Router.push("/auth");
   }
+};
+export const socketIO = () => {
+  if (typeof window === "undefined") return;
+  const token = window.localStorage.getItem("token");
+  if (!token) return Router.push("/auth");
+  checkAuth(token);
+  const decoded = jwt_decode(token);
+  const socket = io(api_backend, {
+    query: `fromID=${decoded.id}`,
+  });
+  return socket;
 };
