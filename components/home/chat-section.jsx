@@ -1,5 +1,5 @@
-import AllMassages from "./AllMassages";
-import SendMassage from "./SendMassage";
+import AllMassages from "./all-massages";
+import SendMassage from "./send-massage";
 import classes from "./scss/chat-section.module.scss";
 import OppositInfo from "./opposit-info";
 import { useEffect } from "react";
