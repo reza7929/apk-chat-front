@@ -40,6 +40,14 @@ yarn start:prod # yarn & next-build & pm2 start
 
 قسمت بعدی که مهمترین بخش این صفحه است `components/home/chat-section` نام دارد. این بخش شامل سه زیرمجموعه `components/home/opposit-info`، `components/home/all-massages` و `components/home/send-massage` میباشد. درقسمت `components/home/opposit-info` اطلاعات کاربرمقابل را نمایش میدهد. قسمت `components/home/all-massages` تمام پیام های موجود را نمایش میدهد و کانکشن گرفتن پیام هارا روی شبکه خاص خود net-id() برقرار میکند و در آخر `components/home/send-massage` پیام را ارسال میکند و کانکشن ارسال پیام را برقرار میکند.
 
+فایل بعدی که باید بررسی شود، `pages/auth.js` نام دارد:
+
+این صفحه دارای دوبخش `componrnts/login-data-set` و `components/register-data-set` میباشد.
+
+دربخش `componrnts/login-data-set` اطلاعات مربوط به ورود کاربر میباشد که در صورت کامل بودن اطلاعات درخواست به سرور ارسال خواهد شد و درصورت تایید سرور [توکن](https://en.wikipedia.org/wiki/JSON_Web_Token) ایجاد خواهد شد و در localStorage مرورگر ذخیره خواهد شد و به صفحه اصلی سوویچ خواهد شد.
+
+دربخش `componrnts/register-data-set` که مربوط به ثبت نام کاربر است درصورت تکمیل بودن اطلاعات به سرور درخواست داده خواهد شد و پس از بررسی اطلاعات در سرور ذخیره خواهد شد، توکن ساخته میشود و به سمت مرورگر فرستاده میشود ودر localStorage مرورگر ذخیره خواهد شد.
+
 ## Getting Started
 
 First, run the development server:
