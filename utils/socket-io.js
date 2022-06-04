@@ -16,12 +16,18 @@ const checkAuth = async (token) => {
 };
 export const socketIO = () => {
   if (typeof window === "undefined") return;
+  //get token
   const token = window.localStorage.getItem("token");
+  //check if token is empty
   if (!token) return Router.push("/auth");
+  //check token validate
   checkAuth(token);
+  //decode the token
   const decoded = jwt_decode(token);
+  //active socket
   const socket = io(api_backend, {
     query: `fromID=${decoded.id}`,
   });
+
   return socket;
 };
