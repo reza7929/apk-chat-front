@@ -9,6 +9,7 @@
 }
 .user_wrapper {
     overflow-y: scroll;
+    height: calc(100% - 61px);
 }
 .persons {
     display: flex;
