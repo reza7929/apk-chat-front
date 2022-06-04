@@ -8,23 +8,29 @@ import Head from "next/head";
 import Loader from "../components/common/loader";
 
 export default function Home() {
-  const [usersData, setUsersData] = useState([]);
-  const [userInfo, setUserInfo] = useState();
-  const [isActiveChat, setIsActiveChat] = useState(false);
-  const [oppositID, setOppositeID] = useState();
-  const [isPageReady, setIsPageReady] = useState(false);
+  const [usersData, setUsersData] = useState([]); //get all users info
+  const [userInfo, setUserInfo] = useState(); //get current user info
+  const [isActiveChat, setIsActiveChat] = useState(false); //check if chat section is active
+  const [oppositID, setOppositeID] = useState(); //get the opposite user who is active his chat section
+  const [isPageReady, setIsPageReady] = useState(false); //check if index page is ready to show
+  //check-token & active socket-io
   const socket = socketIO();
   useEffect(() => {
     const token = localStorage.getItem("token");
+    //check if token is exist
     if (!token) return;
+    //decode token
     const decoded = jwt_decode(token);
+    //save decode info
     setUserInfo(decoded);
+    //active allUsers connection
     socket.emit("allUsers");
     socket.on("allUsersRes", (users) => {
       setUsersData(users);
     });
     setIsPageReady(true);
   }, []);
+  //remove current user from list
   const removeElement = (array, elem) => {
     let newData = [];
     array.map((item) => {
