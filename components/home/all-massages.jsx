@@ -6,12 +6,13 @@ const AllMassages = ({ socket, userInfo, oppositID = 0 }) => {
   const [massages, setMassages] = useState([]);
   const messagesEndRef = useRef();
   useEffect(() => {
-    console.log({ oppositID });
+    // active all massage connection
     socket.emit("allMassages", {
       oppositID,
     });
+    // create network id to show massages
     const netID = networkID(userInfo.id, oppositID);
-    console.log({ netID });
+    //send masssage on network
     socket.on(netID, (massage) => {
       setMassages([]);
       if (massage) setMassages((massages) => [...massages, ...massage]);
@@ -25,6 +26,7 @@ const AllMassages = ({ socket, userInfo, oppositID = 0 }) => {
     console.log("scroll function");
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
+  //convert timestamp to time
   const getTime = (time) => {
     const date = new Date(time);
     let kind = "AM";
@@ -57,6 +59,7 @@ const AllMassages = ({ socket, userInfo, oppositID = 0 }) => {
               {massage.text}
               <br />
               <span className={classes.massage_box_time}>
+                {/* convert time stamp to time */}
                 {getTime(massage.time)}
               </span>
             </p>

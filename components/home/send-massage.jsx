@@ -6,28 +6,15 @@ import classes from "./scss/send-massage.module.scss";
 const SendMassage = ({ socket, oppositID }) => {
   const [massage, setMassage] = useState();
   const handleSubmitBtn = () => {
-    console.log({ oppositID });
     if (massage) {
+      // active send massage connection
       socket.emit("sendMessage", { massage, oppositID });
       socket.emit("allMassages", {
         oppositID,
       });
       return setMassage("");
     }
-    alert("فیلد نمیتواند خالی باشد");
   };
-  //   useEffect(() => {
-  //     const listener = (event) => {
-  //       if (event.code === "Enter" || event.code === "NumpadEnter") {
-  //         event.preventDefault();
-  //         handleSubmitBtn();
-  //       }
-  //     };
-  //     document.addEventListener("keydown", listener);
-  //     return () => {
-  //       document.removeEventListener("keydown", listener);
-  //     };
-  //   }, []);
 
   return (
     <div className={classes.container}>
