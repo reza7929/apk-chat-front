@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## مستند معماری
 
-برنامه چت آنلاین به صورتی طراحی شده که با استفاده از ثبت نام و ورود کاربر میتوان از آن استفاده کرد. این برنامه از [توکن](https://en.wikipedia.org/wiki/JSON_Web_Token) برای تاییدیه کاربرها و ارسال و دریافت درخواست ها استفاده میشود. برای real-time بودن پیام ها از پکیج [socket-io](https://www.npmjs.com/package/socket.io) استفاده شده و برای Backend و [socket-io-clinet](https://www.npmjs.com/package/socket.io-client) برای Frontend استفاده شده است. ازقابلیت های این برنامه به موارد زیر میتوان اشاره کرد:
+برنامه چت آنلاین به صورتی طراحی شده که با استفاده از ثبت نام و ورود کاربر میتوان از آن استفاده کرد. این برنامه از [توکن](https://en.wikipedia.org/wiki/JSON_Web_Token) برای تاییدیه کاربرها و ارسال و دریافت درخواست ها استفاده میشود. برای real-time بودن پیام ها از پکیج [socket-io](https://www.npmjs.com/package/socket.io) استفاده شده و برای Backend [socket-io-clinet](https://www.npmjs.com/package/socket.io-client) و برای Frontend استفاده شده است. ازقابلیت های این برنامه به موارد زیر میتوان اشاره کرد:
 
 - ایجاد ارتباط میان دو کاربر
 - ذخیره سازی اطلاعات (ازقبیل پیام و زمان ارسال) در پایگاه داده [mongodb(noSQL-database)](https://www.mongodb.com/)
@@ -20,7 +20,7 @@ npm install -g yarn
 
 ** نکته مهم **
 
-درصورتی که برنامه قرار باشد بر روی سیستم اجرا و تست شود،همان دستور `yarn dev` اجرا شود و نیازی به ادامه اجرای مستند پیاده سازی نیست.
+درصورتی که برنامه قرار باشد بر روی سیستم اجرا و تست شود،همان دستور `yarn dev` اجرا شود و نیازی به ادامه اجرای مستند پیاده سازی نیست. درغیراینصورت ادامه ی این نحوه پیاده سازی را دنبال کنید.
 
 این برنامه درابتدا، برای فعال سازی و راه اندازی از پکیج [pm2](https://www.npmjs.com/package/pm2) استفاده میکند. لذا برای راه اندازی بر روی سرور خود ابتدا پکیج [pm2](https://www.npmjs.com/package/pm2) را نصب کنید:
 
