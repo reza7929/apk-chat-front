@@ -5,13 +5,10 @@ import classes from "./scss/send-massage.module.scss";
 
 const SendMassage = ({ socket, oppositID }) => {
   const [massage, setMassage] = useState();
-  const handleSubmitBtn = () => {
+  const handleSubmitBtn = async () => {
     if (massage) {
       // active send massage connection
       socket.emit("sendMessage", { massage, oppositID });
-      socket.emit("allMassages", {
-        oppositID,
-      });
       return setMassage("");
     }
   };
