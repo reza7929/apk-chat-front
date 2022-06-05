@@ -12,6 +12,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## نحوه پیاده سازی
 
+در ابتدا پکیج [yarn](https://www.npmjs.com/package/yarn) را به صورت گلوبال بر روی سیستم نصب میکنیم تا به جای [npm](https://www.npmjs.com/package/npm) از [yarn](https://www.npmjs.com/package/yarn) استفاده کنیم. دلیل اینکار سرعت بهتر و سازگاری بهتر نصب پکیج ها بر روی سرور میباشد و همچنین با کش کردن باعت بهبود عملکرد میشود.
+
+```bash
+npm install -g yarn
+```
+
 ** نکته مهم **
 
 درصورتی که برنامه قرار باشد بر روی سیستم اجرا و تست شود،همان دستور `yarn dev` اجرا شود و نیازی به ادامه اجرای مستند پیاده سازی نیست.
@@ -50,6 +56,6 @@ yarn start:prod # yarn & next-build & pm2 start
 
 این صفحه دارای دوبخش `componrnts/login-data-set` و `components/register-data-set` میباشد.
 
-دربخش `componrnts/login-data-set` اطلاعات مربوط به ورود کاربر میباشد که در صورت کامل بودن اطلاعات درخواست به سرور ارسال خواهد شد و درصورت تایید سرور [توکن](https://en.wikipedia.org/wiki/JSON_Web_Token) ایجاد خواهد شد و در localStorage مرورگر ذخیره خواهد شد و به صفحه اصلی سوویچ خواهد شد.
+دربخش `componrnts/login-data-set` اطلاعات مربوط به ورود کاربر میباشد که در صورت کامل بودن اطلاعات درخواست به سرور ارسال خواهد شد و درصورت تایید سرور [توکن](https://en.wikipedia.org/wiki/JSON_Web_Token) ایجاد خواهد شد و در [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) مرورگر ذخیره خواهد شد و به صفحه اصلی سوویچ خواهد شد.
 
-دربخش `componrnts/register-data-set` که مربوط به ثبت نام کاربر است درصورت تکمیل بودن اطلاعات به سرور درخواست داده خواهد شد و پس از بررسی اطلاعات در سرور ذخیره خواهد شد، توکن ساخته میشود و به سمت مرورگر فرستاده میشود ودر localStorage مرورگر ذخیره خواهد شد.
+دربخش `componrnts/register-data-set` که مربوط به ثبت نام کاربر است درصورت تکمیل بودن اطلاعات به سرور درخواست داده خواهد شد و پس از بررسی اطلاعات در سرور ذخیره خواهد شد، توکن ساخته میشود و به سمت مرورگر فرستاده میشود ودر [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) مرورگر ذخیره خواهد شد.
