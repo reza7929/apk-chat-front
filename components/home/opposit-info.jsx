@@ -9,7 +9,7 @@ const OppositInfo = ({ users, oppositID, setIsActiveChat }) => {
     users.map((user) => {
       if (user.id == oppositID) return setOppositUser(user);
     });
-  }, [users]);
+  }, [users, oppositID]);
 
   return (
     <div className={classes.container}>
