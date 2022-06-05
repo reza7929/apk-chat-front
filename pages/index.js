@@ -58,7 +58,6 @@ export default function Home() {
       />
       <ChatSection
         users={usersData}
-        userInfo={userInfo}
         socket={socket}
         isActiveChat={isActiveChat}
         setIsActiveChat={setIsActiveChat}
