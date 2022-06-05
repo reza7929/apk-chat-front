@@ -12,14 +12,16 @@ const AllMassages = ({ socket, oppositID }) => {
     //send masssage on network
     socket.on("massagesRes", (massage) => {
       if (massage) setMassages((massages) => [...massages, ...massage]);
-      // scrollToBottom();
+      setTimeout(() => {
+        scrollToBottom();
+      }, 500);
     });
     return () => {
       setMassages([]);
+      if (oppositID) socket.emit("leaveRoom", { oppositID });
     };
   }, [oppositID]);
   const scrollToBottom = () => {
-    console.log("scroll function");
     messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
   };
   //convert timestamp to time
