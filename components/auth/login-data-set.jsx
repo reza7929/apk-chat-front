@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { api_backend } from "../../utils/constance";
-import TextInput from "../common/text-input";
+import TextInput from "../common/text-input"; // this is common component for input
 import classes from "./scss/login-data-set.module.scss";
 import { toast, ToastContainer } from "react-nextjs-toast";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -12,9 +12,10 @@ const LoginDataSet = ({ setIsRegister }) => {
   const [data, setData] = useState({
     userName: "",
     pass: "",
-  });
-  const [showContent, setShowContent] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  }); // this is for login input data
+  const [showContent, setShowContent] = useState(false); // this is for animation of the content
+  const [isLoading, setIsLoading] = useState(false); //this is for loader
+  //this function will be run when user clicked on login button
   const handleSubmitBtn = async () => {
     if (!data.userName || !data.pass)
       return toast.notify("", {
@@ -44,6 +45,7 @@ const LoginDataSet = ({ setIsRegister }) => {
   useEffect(() => {
     setShowContent(true);
   }, []);
+  //this function will be run when user clicked on have an account text
   const handleRegisterClick = () => {
     setShowContent(false);
     setTimeout(() => {
@@ -77,7 +79,7 @@ const LoginDataSet = ({ setIsRegister }) => {
             color="primary"
             className={classes.btn}
           >
-            Log in
+            ورود
           </Button>
         )}
       </form>

@@ -11,13 +11,16 @@ const AllMassages = ({ socket, oppositID }) => {
     });
     //send masssage on network
     socket.on("massagesRes", (massage) => {
+      //add massage to massages
       if (massage) setMassages((massages) => [...massages, ...massage]);
       setTimeout(() => {
         scrollToBottom();
       }, 500);
     });
     return () => {
+      // empty massages
       setMassages([]);
+      //close socket connection
       if (oppositID) socket.emit("leaveRoom", { oppositID });
     };
   }, [oppositID]);

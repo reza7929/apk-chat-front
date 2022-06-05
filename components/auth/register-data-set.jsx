@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import TextInput from "../common/text-input";
+import TextInput from "../common/text-input"; // this is common component for input
 import classes from "./scss/register-data-set.module.scss";
 import { Button } from "@mui/material";
 import axios from "axios";
@@ -13,9 +13,10 @@ const RegisterDataSet = ({ setIsRegister }) => {
     userName: "",
     pass: "",
     confirmPass: "",
-  });
-  const [showContent, setShowContent] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  }); // this will be get the data
+  const [showContent, setShowContent] = useState(false); // this is for animation of showing register content
+  const [isLoading, setIsLoading] = useState(false); // this is for loader
+  //this function will be run when user clicked on register button
   const handleSubmitBtn = async () => {
     if (!data.userName || !data.pass || !data.confirmPass)
       return toast.notify("", {
@@ -51,6 +52,7 @@ const RegisterDataSet = ({ setIsRegister }) => {
   useEffect(() => {
     setShowContent(true);
   }, []);
+  //this function will be run when user clicked on register
   const handleLoginClick = () => {
     setShowContent(false);
     setTimeout(() => {
@@ -91,7 +93,7 @@ const RegisterDataSet = ({ setIsRegister }) => {
             color="primary"
             className={classes.btn}
           >
-            Register
+            ثبت نام
           </Button>
         )}
       </form>
