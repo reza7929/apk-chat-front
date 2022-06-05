@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { networkID } from "../../utils/network-id";
 import classes from "./scss/all-massages.module.scss";
 
-const AllMassages = ({ socket, userInfo, oppositID = 0 }) => {
+const AllMassages = ({ socket, oppositID }) => {
   const [massages, setMassages] = useState([]);
   const messagesEndRef = useRef();
   useEffect(() => {
@@ -10,16 +9,13 @@ const AllMassages = ({ socket, userInfo, oppositID = 0 }) => {
     socket.emit("allMassages", {
       oppositID,
     });
-    // create network id to show massages
-    const netID = networkID(userInfo.id, oppositID);
     //send masssage on network
-    socket.on(netID, (massage) => {
-      setMassages([]);
+    socket.on("massagesRes", (massage) => {
       if (massage) setMassages((massages) => [...massages, ...massage]);
-      scrollToBottom();
+      // scrollToBottom();
     });
     return () => {
-      socket.off(netID);
+      setMassages([]);
     };
   }, [oppositID]);
   const scrollToBottom = () => {
