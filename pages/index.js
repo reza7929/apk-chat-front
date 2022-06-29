@@ -6,6 +6,12 @@ import ChatSection from "../components/home/chat-section";
 import { socketIO } from "../utils/socket-io";
 import Head from "next/head";
 import Loader from "../components/common/loader";
+import {
+  OppositUserContextProvider,
+  SetisActiveChatContextProvider,
+  SocketContextProvider,
+  UserContextProvider,
+} from "../context";
 
 export default function Home() {
   const [usersData, setUsersData] = useState([]); //get all users info
@@ -43,25 +49,27 @@ export default function Home() {
   if (!isPageReady) return <Loader />;
 
   return (
-    <HomeLayout>
-      <Head>
-        <title>apk | چت</title>
-        <meta name="description" content="پروژه تست چت" />
-      </Head>
+    <UserContextProvider users={usersData}>
+      <SocketContextProvider socket={socket}>
+        <OppositUserContextProvider oppositID={oppositID}>
+          <SetisActiveChatContextProvider setIsActiveChat={setIsActiveChat}>
+            <HomeLayout>
+              <Head>
+                <title>apk | چت</title>
+                <meta name="description" content="پروژه تست چت" />
+              </Head>
 
-      <Users
-        users={removeElement(usersData, userInfo?.userName)}
-        userInfo={userInfo}
-        setIsActiveChat={setIsActiveChat}
-        setOppositeID={setOppositeID}
-      />
-      <ChatSection
-        users={usersData}
-        socket={socket}
-        isActiveChat={isActiveChat}
-        setIsActiveChat={setIsActiveChat}
-        oppositID={oppositID}
-      />
-    </HomeLayout>
+              <Users
+                users={removeElement(usersData, userInfo?.userName)}
+                userInfo={userInfo}
+                setIsActiveChat={setIsActiveChat}
+                setOppositeID={setOppositeID}
+              />
+              <ChatSection isActiveChat={isActiveChat} />
+            </HomeLayout>
+          </SetisActiveChatContextProvider>
+        </OppositUserContextProvider>
+      </SocketContextProvider>
+    </UserContextProvider>
   );
 }

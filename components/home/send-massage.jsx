@@ -1,10 +1,13 @@
 import { Input } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import classes from "./scss/send-massage.module.scss";
+import { OppositUserContext, SocketContext } from "../../context";
 
-const SendMassage = ({ socket, oppositID }) => {
+const SendMassage = () => {
   const [massage, setMassage] = useState();
+  const { socket } = useContext(SocketContext);
+  const { oppositID } = useContext(OppositUserContext);
   const handleSubmitBtn = async () => {
     if (massage) {
       // active send massage connection

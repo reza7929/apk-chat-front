@@ -1,9 +1,12 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+import { OppositUserContext, SocketContext } from "../../context";
 import classes from "./scss/all-massages.module.scss";
 
-const AllMassages = ({ socket, oppositID }) => {
+const AllMassages = () => {
   const [massages, setMassages] = useState([]);
   const messagesEndRef = useRef();
+  const { socket } = useContext(SocketContext);
+  const { oppositID } = useContext(OppositUserContext);
   useEffect(() => {
     // active all massage connection
     socket.emit("allMassages", {
