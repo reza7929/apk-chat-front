@@ -2,11 +2,16 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { api_backend } from "../../utils/constance";
-import TextInput from "../common/text-input"; // this is common component for input
 import classes from "./scss/login-data-set.module.scss";
 import { toast, ToastContainer } from "react-nextjs-toast";
 import CircularProgress from "@mui/material/CircularProgress";
 import Router from "next/router";
+import {
+  EuiFieldText,
+  EuiFieldPassword,
+  EuiButton,
+  EuiLink,
+} from "@elastic/eui";
 
 const LoginDataSet = ({ setIsRegister }) => {
   const [data, setData] = useState({
@@ -57,38 +62,35 @@ const LoginDataSet = ({ setIsRegister }) => {
     <div className={`${classes.container} ${showContent && classes.animation}`}>
       <ToastContainer />
       <form>
-        <TextInput
-          label="نام کاربری"
+        <EuiFieldText
+          placeholder="نام کاربری"
           onChange={(e) => {
             setData({ ...data, userName: e.target.value });
           }}
         />
-        <TextInput
-          label="رمز ورود"
+        <EuiFieldPassword
+          placeholder="رمزعبور"
+          type="dual"
           onChange={(e) => {
             setData({ ...data, pass: e.target.value });
           }}
-          type="password"
         />
         {isLoading ? (
           <CircularProgress className={classes.loader} />
         ) : (
-          <Button
-            onClick={() => handleSubmitBtn()}
-            type="button"
+          <EuiButton
             color="primary"
-            className={classes.btn}
+            onClick={() => handleSubmitBtn()}
+            fill
+            fullWidth
           >
             ورود
-          </Button>
+          </EuiButton>
         )}
       </form>
-      <p
-        className={classes.register_text}
-        onClick={() => handleRegisterClick()}
-      >
+      <EuiLink color="Subdued" onClick={() => handleRegisterClick()}>
         ثبت نام
-      </p>
+      </EuiLink>
     </div>
   );
 };

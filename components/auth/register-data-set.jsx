@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TextInput from "../common/text-input"; // this is common component for input
 import classes from "./scss/register-data-set.module.scss";
 import { Button } from "@mui/material";
 import axios from "axios";
@@ -7,6 +6,12 @@ import Router from "next/router";
 import { api_backend } from "../../utils/constance";
 import { toast, ToastContainer } from "react-nextjs-toast";
 import CircularProgress from "@mui/material/CircularProgress";
+import {
+  EuiFieldText,
+  EuiFieldPassword,
+  EuiButton,
+  EuiLink,
+} from "@elastic/eui";
 
 const RegisterDataSet = ({ setIsRegister }) => {
   const [data, setData] = useState({
@@ -64,42 +69,43 @@ const RegisterDataSet = ({ setIsRegister }) => {
     <div className={`${classes.container} ${showContent && classes.animation}`}>
       <ToastContainer />
       <form>
-        <TextInput
-          label="نام کاربری"
+        <EuiFieldText
+          placeholder="نام کاربری"
           onChange={(e) => {
             setData({ ...data, userName: e.target.value });
           }}
         />
-        <TextInput
-          label="رمز عبور"
+        <EuiFieldPassword
+          placeholder="رمزعبور"
+          type="dual"
           onChange={(e) => {
             setData({ ...data, pass: e.target.value });
           }}
-          type="password"
         />
-        <TextInput
-          label="تکرار رمز عبور"
+        <EuiFieldPassword
+          placeholder="تکرار رمزعبور"
+          type="dual"
           onChange={(e) => {
             setData({ ...data, confirmPass: e.target.value });
           }}
-          type="password"
         />
+
         {isLoading ? (
           <CircularProgress className={classes.loader} />
         ) : (
-          <Button
-            onClick={() => handleSubmitBtn()}
-            type="button"
+          <EuiButton
             color="primary"
-            className={classes.btn}
+            onClick={() => handleSubmitBtn()}
+            fill
+            fullWidth
           >
             ثبت نام
-          </Button>
+          </EuiButton>
         )}
       </form>
-      <p className={classes.login_text} onClick={() => handleLoginClick()}>
+      <EuiLink color="Subdued" onClick={() => handleLoginClick()}>
         حساب کاربری دارید ؟
-      </p>
+      </EuiLink>
     </div>
   );
 };

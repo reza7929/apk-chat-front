@@ -28,3 +28,9 @@ div::-webkit-scrollbar {
 div::-webkit-scrollbar-thumb {
   background-color: rgba(0,0,0,.2);
 }
+.euiFormControlLayout {
+  margin-bottom: 20px;
+}
+button {
+  margin-bottom: 10px;
+}
