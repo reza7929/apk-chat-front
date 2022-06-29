@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import classes from "./scss/register-data-set.module.scss";
-import { Button } from "@mui/material";
 import axios from "axios";
 import Router from "next/router";
 import { api_backend } from "../../utils/constance";
@@ -12,6 +10,7 @@ import {
   EuiButton,
   EuiLink,
 } from "@elastic/eui";
+import ContainerBox from "../../layouts/auth/container-box";
 
 const RegisterDataSet = ({ setIsRegister }) => {
   const [data, setData] = useState({
@@ -66,7 +65,7 @@ const RegisterDataSet = ({ setIsRegister }) => {
   };
 
   return (
-    <div className={`${classes.container} ${showContent && classes.animation}`}>
+    <ContainerBox showContent={showContent}>
       <ToastContainer />
       <form>
         <EuiFieldText
@@ -91,7 +90,11 @@ const RegisterDataSet = ({ setIsRegister }) => {
         />
 
         {isLoading ? (
-          <CircularProgress className={classes.loader} />
+          <CircularProgress
+            width="40px"
+            height="40px"
+            style={{ marginBottom: "10px" }}
+          />
         ) : (
           <EuiButton
             color="primary"
@@ -106,7 +109,7 @@ const RegisterDataSet = ({ setIsRegister }) => {
       <EuiLink color="Subdued" onClick={() => handleLoginClick()}>
         حساب کاربری دارید ؟
       </EuiLink>
-    </div>
+    </ContainerBox>
   );
 };
 

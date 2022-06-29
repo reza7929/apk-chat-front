@@ -1,8 +1,6 @@
-import { Button } from "@mui/material";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { api_backend } from "../../utils/constance";
-import classes from "./scss/login-data-set.module.scss";
 import { toast, ToastContainer } from "react-nextjs-toast";
 import CircularProgress from "@mui/material/CircularProgress";
 import Router from "next/router";
@@ -12,6 +10,7 @@ import {
   EuiButton,
   EuiLink,
 } from "@elastic/eui";
+import ContainerBox from "../../layouts/auth/container-box";
 
 const LoginDataSet = ({ setIsRegister }) => {
   const [data, setData] = useState({
@@ -59,7 +58,7 @@ const LoginDataSet = ({ setIsRegister }) => {
   };
 
   return (
-    <div className={`${classes.container} ${showContent && classes.animation}`}>
+    <ContainerBox showContent={showContent}>
       <ToastContainer />
       <form>
         <EuiFieldText
@@ -76,7 +75,11 @@ const LoginDataSet = ({ setIsRegister }) => {
           }}
         />
         {isLoading ? (
-          <CircularProgress className={classes.loader} />
+          <CircularProgress
+            width="40px"
+            height="40px"
+            style={{ marginBottom: "10px" }}
+          />
         ) : (
           <EuiButton
             color="primary"
@@ -91,7 +94,7 @@ const LoginDataSet = ({ setIsRegister }) => {
       <EuiLink color="Subdued" onClick={() => handleRegisterClick()}>
         ثبت نام
       </EuiLink>
-    </div>
+    </ContainerBox>
   );
 };
 
