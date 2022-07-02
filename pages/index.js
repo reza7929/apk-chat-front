@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
-import HomeLayout from "../layouts/home-layout";
 import Users from "../components/home/users";
 import ChatSection from "../components/home/chat-section";
 import { socketIO } from "../utils/socket-io";
@@ -12,6 +11,7 @@ import {
   SocketContextProvider,
   UserContextProvider,
 } from "../context";
+import { EuiFlexGroup, EuiFlexItem, EuiSpacer } from "@elastic/eui";
 
 export default function Home() {
   const [usersData, setUsersData] = useState([]); //get all users info
@@ -53,20 +53,23 @@ export default function Home() {
       <SocketContextProvider socket={socket}>
         <OppositUserContextProvider oppositID={oppositID}>
           <SetisActiveChatContextProvider setIsActiveChat={setIsActiveChat}>
-            <HomeLayout>
-              <Head>
-                <title>apk | چت</title>
-                <meta name="description" content="پروژه تست چت" />
-              </Head>
-
-              <Users
-                users={removeElement(usersData, userInfo?.userName)}
-                userInfo={userInfo}
-                setIsActiveChat={setIsActiveChat}
-                setOppositeID={setOppositeID}
-              />
-              <ChatSection isActiveChat={isActiveChat} />
-            </HomeLayout>
+            <Head>
+              <title>apk | چت</title>
+              <meta name="description" content="پروژه تست چت" />
+            </Head>
+            <EuiFlexGroup style={{ height: "100%" }}>
+              <EuiFlexItem grow={1}>
+                <Users
+                  users={removeElement(usersData, userInfo?.userName)}
+                  userInfo={userInfo}
+                  setIsActiveChat={setIsActiveChat}
+                  setOppositeID={setOppositeID}
+                />
+              </EuiFlexItem>
+              <EuiFlexItem grow={3}>
+                <ChatSection isActiveChat={isActiveChat} />
+              </EuiFlexItem>
+            </EuiFlexGroup>
           </SetisActiveChatContextProvider>
         </OppositUserContextProvider>
       </SocketContextProvider>
