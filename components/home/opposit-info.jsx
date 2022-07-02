@@ -7,8 +7,10 @@ import {
 import {
   EuiHeader,
   EuiHeaderLogo,
+  EuiAvatar,
   EuiHeaderSectionItemButton,
   EuiIcon,
+  EuiText,
 } from "@elastic/eui";
 
 const OppositInfo = () => {
@@ -29,7 +31,12 @@ const OppositInfo = () => {
       sections={[
         {
           items: [
-            <EuiHeaderLogo>{oppositUser?.userName}</EuiHeaderLogo>,
+            <EuiAvatar size="m" name={oppositUser?.userName} />,
+            <EuiHeaderSectionItemButton>
+              <EuiText>
+                <p>{oppositUser?.userName}</p>
+              </EuiText>
+            </EuiHeaderSectionItemButton>,
             <EuiHeaderSectionItemButton>
               <EuiIcon
                 type={oppositUser?.isOnline ? "online" : "offline"}
