@@ -4,7 +4,6 @@ import { OppositUserContext, SocketContext } from "../../context";
 
 const AllMassages = () => {
   const [massages, setMassages] = useState([]);
-  console.log({ massages });
   const messagesEndRef = useRef();
   const { socket } = useContext(SocketContext);
   const { oppositID } = useContext(OppositUserContext);
