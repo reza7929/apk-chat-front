@@ -31,7 +31,10 @@ const OppositInfo = () => {
       sections={[
         {
           items: [
-            <EuiAvatar size="m" name={oppositUser?.userName} />,
+            <EuiAvatar
+              size="m"
+              name={oppositUser ? oppositUser.userName : ""}
+            />,
             <EuiHeaderSectionItemButton>
               <EuiText>
                 <p>{oppositUser?.userName}</p>
