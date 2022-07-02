@@ -1,12 +1,15 @@
-import CloseIcon from "@mui/icons-material/Close";
-import classes from "./scss/opposit-info.module.scss";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { useContext, useEffect, useState } from "react";
 import {
   UserContext,
   OppositUserContext,
   SetisActiveChatContext,
 } from "../../context";
+import {
+  EuiHeader,
+  EuiHeaderLogo,
+  EuiHeaderSectionItemButton,
+  EuiIcon,
+} from "@elastic/eui";
 
 const OppositInfo = () => {
   const [oppositUser, setOppositUser] = useState();
@@ -22,18 +25,31 @@ const OppositInfo = () => {
 
   return (
     <>
-      <div className={classes.container}>
-        <div className={classes.user_box}>
-          <AccountCircleIcon className={classes.user_box_icon} />
-          <div>
-            {/* show user names */}
-            <h4>{oppositUser?.userName}</h4>
-            {/* check user is online or not */}
-            <p>{oppositUser?.isOnline ? "online" : "offline"}</p>
-          </div>
-        </div>
-        <CloseIcon onClick={() => setIsActiveChat(false)} />
-      </div>
+      <EuiHeader
+        theme="dark"
+        sections={[
+          {
+            items: [
+              <EuiHeaderLogo>{oppositUser?.userName}</EuiHeaderLogo>,
+              <EuiHeaderSectionItemButton>
+                <EuiIcon
+                  type={oppositUser?.isOnline ? "online" : "offline"}
+                  size="m"
+                />
+              </EuiHeaderSectionItemButton>,
+            ],
+          },
+          {
+            items: [
+              <EuiHeaderSectionItemButton
+                onClick={() => setIsActiveChat(false)}
+              >
+                <EuiIcon type="cross" size="m" />
+              </EuiHeaderSectionItemButton>,
+            ],
+          },
+        ]}
+      />
     </>
   );
 };
