@@ -4,14 +4,18 @@ import Users from "../components/home/users";
 import ChatSection from "../components/home/chat-section";
 import { socketIO } from "../utils/socket-io";
 import Head from "next/head";
-import Loader from "../components/common/loader";
 import {
   OppositUserContextProvider,
   SetisActiveChatContextProvider,
   SocketContextProvider,
   UserContextProvider,
 } from "../context";
-import { EuiFlexGroup, EuiFlexItem, EuiSpacer } from "@elastic/eui";
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiSpacer,
+  EuiLoadingSpinner,
+} from "@elastic/eui";
 
 export default function Home() {
   const [usersData, setUsersData] = useState([]); //get all users info
@@ -46,7 +50,7 @@ export default function Home() {
     return newData;
   };
 
-  if (!isPageReady) return <Loader />;
+  if (!isPageReady) return <EuiLoadingSpinner size="xxl" />;
 
   return (
     <UserContextProvider users={usersData}>

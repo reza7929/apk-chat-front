@@ -2,13 +2,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { api_backend } from "../../utils/constance";
 import { toast, ToastContainer } from "react-nextjs-toast";
-import CircularProgress from "@mui/material/CircularProgress";
 import Router from "next/router";
 import {
   EuiFieldText,
   EuiFieldPassword,
   EuiButton,
   EuiLink,
+  EuiLoadingSpinner,
 } from "@elastic/eui";
 import ContainerBox from "../../layouts/auth/container-box";
 
@@ -75,11 +75,7 @@ const LoginDataSet = ({ setIsRegister }) => {
           }}
         />
         {isLoading ? (
-          <CircularProgress
-            width="40px"
-            height="40px"
-            style={{ marginBottom: "10px" }}
-          />
+          <EuiLoadingSpinner size="xxl" />
         ) : (
           <EuiButton
             color="primary"

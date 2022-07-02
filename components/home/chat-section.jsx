@@ -1,7 +1,7 @@
 import AllMassages from "./all-massages";
 import SendMassage from "./send-massage";
-import classes from "./scss/chat-section.module.scss";
 import OppositInfo from "./opposit-info";
+import { EuiFlexGroup, EuiFlexItem, EuiText, EuiIcon } from "@elastic/eui";
 
 const ChatSection = ({ isActiveChat }) => {
   if (isActiveChat)
@@ -14,13 +14,14 @@ const ChatSection = ({ isActiveChat }) => {
     );
 
   return (
-    <div className={classes.container}>
-      <div className={classes.select_chat}>
-        <p className={classes.info_text}>
-          برای شروع گفتگو لطفا یکی از کاربران مقابل را انتخاب کنید
-        </p>
-      </div>
-    </div>
+    <EuiFlexGroup justifyContent="center" alignItems="center">
+      <EuiFlexItem>
+        <EuiIcon type="logoElastic" size="xl" style={{ margin: "auto" }} />
+        <EuiText textAlign="center">
+          <p>لطفا یکی از کاربران مقابل را برای ارسال ‍بیام انتخاب کنید</p>
+        </EuiText>
+      </EuiFlexItem>
+    </EuiFlexGroup>
   );
 };
 
