@@ -2,8 +2,6 @@ import {
   EuiTitle,
   EuiTextColor,
   EuiTextAlign,
-  EuiFlexGroup,
-  EuiFlexItem,
   EuiListGroup,
   EuiListGroupItem,
 } from "@elastic/eui";
@@ -25,13 +23,20 @@ const Users = ({ users, userInfo, setIsActiveChat, setOppositeID }) => {
             <EuiListGroupItem
               key={user.userName}
               label={user.userName}
-              isActive={user.isOnline}
               iconType="user"
               onClick={() => {
                 // active chat section
                 setIsActiveChat(true);
                 //save clicked user id
                 setOppositeID(user.id);
+              }}
+              extraAction={{
+                color: "text",
+                iconType: user.isOnline ? "online" : "offline",
+                iconSize: "m",
+                "aria-label": "Check online box",
+                alwaysShow: true,
+                isDisabled: true,
               }}
             />
           );
