@@ -16,6 +16,10 @@ a {
   box-sizing: border-box;
 }
 
+/* remove extra outline */
+input:focus:focus-visible {
+  outline: none;
+}
 #__next {
   height: 100%;
 }
