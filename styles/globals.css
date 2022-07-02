@@ -20,6 +20,9 @@ a {
 input:focus:focus-visible {
   outline: none;
 }
+textarea:focus:focus-visible {
+  outline: none;
+}
 #__next {
   height: 100%;
 }
