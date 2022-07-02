@@ -1,8 +1,6 @@
-import { Input } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
 import { useState, useContext } from "react";
-import classes from "./scss/send-massage.module.scss";
 import { OppositUserContext, SocketContext } from "../../context";
+import { EuiFlexGroup, EuiFlexItem, EuiIcon, EuiTextArea } from "@elastic/eui";
 
 const SendMassage = () => {
   const [massage, setMassage] = useState();
@@ -17,16 +15,25 @@ const SendMassage = () => {
   };
 
   return (
-    <div className={classes.container}>
-      <Input
-        disableUnderline
-        multiline
-        value={massage}
-        onChange={(e) => setMassage(e.target.value)}
-        className={classes.input}
-      />
-      <SendIcon onClick={() => handleSubmitBtn()} />
-    </div>
+    <EuiFlexGroup
+      alignItems="center"
+      justifyContent="center"
+      style={{ width: "95%", margin: "auto" }}
+    >
+      <EuiFlexItem>
+        <EuiTextArea
+          placeholder="Placeholder text"
+          aria-label="Send massage"
+          fullWidth
+          compressed
+          value={massage}
+          onChange={(e) => setMassage(e.target.value)}
+        />
+      </EuiFlexItem>
+      <EuiFlexItem grow={false} onClick={() => handleSubmitBtn()}>
+        <EuiIcon type="arrowRight" />
+      </EuiFlexItem>
+    </EuiFlexGroup>
   );
 };
 

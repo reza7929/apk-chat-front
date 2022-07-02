@@ -6,11 +6,11 @@ import OppositInfo from "./opposit-info";
 const ChatSection = ({ isActiveChat }) => {
   if (isActiveChat)
     return (
-      <div className={classes.chat}>
+      <>
         <OppositInfo />
         <AllMassages />
         <SendMassage />
-      </div>
+      </>
     );
 
   return (

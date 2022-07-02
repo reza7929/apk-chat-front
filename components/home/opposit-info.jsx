@@ -24,33 +24,29 @@ const OppositInfo = () => {
   }, [users, oppositID]);
 
   return (
-    <>
-      <EuiHeader
-        theme="dark"
-        sections={[
-          {
-            items: [
-              <EuiHeaderLogo>{oppositUser?.userName}</EuiHeaderLogo>,
-              <EuiHeaderSectionItemButton>
-                <EuiIcon
-                  type={oppositUser?.isOnline ? "online" : "offline"}
-                  size="m"
-                />
-              </EuiHeaderSectionItemButton>,
-            ],
-          },
-          {
-            items: [
-              <EuiHeaderSectionItemButton
-                onClick={() => setIsActiveChat(false)}
-              >
-                <EuiIcon type="cross" size="m" />
-              </EuiHeaderSectionItemButton>,
-            ],
-          },
-        ]}
-      />
-    </>
+    <EuiHeader
+      theme="dark"
+      sections={[
+        {
+          items: [
+            <EuiHeaderLogo>{oppositUser?.userName}</EuiHeaderLogo>,
+            <EuiHeaderSectionItemButton>
+              <EuiIcon
+                type={oppositUser?.isOnline ? "online" : "offline"}
+                size="m"
+              />
+            </EuiHeaderSectionItemButton>,
+          ],
+        },
+        {
+          items: [
+            <EuiHeaderSectionItemButton onClick={() => setIsActiveChat(false)}>
+              <EuiIcon type="cross" size="m" />
+            </EuiHeaderSectionItemButton>,
+          ],
+        },
+      ]}
+    />
   );
 };
 

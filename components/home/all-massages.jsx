@@ -1,12 +1,14 @@
+import { EuiText, useEuiTheme, EuiTextColor } from "@elastic/eui";
 import { useState, useEffect, useRef, useContext } from "react";
 import { OppositUserContext, SocketContext } from "../../context";
-import classes from "./scss/all-massages.module.scss";
 
 const AllMassages = () => {
   const [massages, setMassages] = useState([]);
+  console.log({ massages });
   const messagesEndRef = useRef();
   const { socket } = useContext(SocketContext);
   const { oppositID } = useContext(OppositUserContext);
+  const { euiTheme } = useEuiTheme();
   useEffect(() => {
     // active all massage connection
     socket.emit("allMassages", {
@@ -16,9 +18,9 @@ const AllMassages = () => {
     socket.on("massagesRes", (massage) => {
       //add massage to massages
       if (massage) setMassages((massages) => [...massages, ...massage]);
-      setTimeout(() => {
-        scrollToBottom();
-      }, 500);
+      // setTimeout(() => {
+      //   scrollToBottom();
+      // }, 500);
     });
     return () => {
       // empty massages
@@ -49,28 +51,44 @@ const AllMassages = () => {
   };
 
   return (
-    <div className={classes.container}>
+    <div
+      tabIndex={0}
+      role="region"
+      aria-label="scroll box"
+      className="eui-yScrollWithShadows"
+      style={{ height: "100%" }}
+    >
       {massages?.map((massage, index) => {
+        const isOpposit = massage.fromID == oppositID;
         return (
-          <div className={classes.massage_box} key={index}>
-            <p
-              className={`${classes.massage_box_text} ${
-                massage.fromID != oppositID
-                  ? classes.user_side
-                  : classes.opposit_side
-              }`}
+          <>
+            <EuiText
+              css={{
+                width: "fit-content",
+                marginRight: isOpposit ? "auto" : "10px",
+                marginLeft: isOpposit ? "10px" : "auto",
+                marginTop: euiTheme.size.l,
+                marginBottom: euiTheme.size.l,
+                textAlign: isOpposit ? "left" : "right",
+                background: isOpposit
+                  ? euiTheme.colors.darkShade
+                  : euiTheme.colors.lightShade,
+                padding: euiTheme.size.m,
+                borderRadius: euiTheme.size.m,
+              }}
             >
-              {massage.text}
-              <br />
-              <span className={classes.massage_box_time}>
-                {/* convert time stamp to time */}
-                {getTime(massage.time)}
-              </span>
-            </p>
-          </div>
+              <p>
+                <EuiTextColor color={isOpposit ? "white" : "#504848"}>
+                  {massage.text}
+                </EuiTextColor>
+              </p>
+              <p>
+                <small>{getTime(massage.time)}</small>
+              </p>
+            </EuiText>
+          </>
         );
       })}
-      <div ref={messagesEndRef} />
     </div>
   );
 };
