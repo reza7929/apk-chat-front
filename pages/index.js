@@ -10,12 +10,7 @@ import {
   SocketContextProvider,
   UserContextProvider,
 } from "../context";
-import {
-  EuiFlexGroup,
-  EuiFlexItem,
-  EuiSpacer,
-  EuiLoadingSpinner,
-} from "@elastic/eui";
+import { EuiFlexGroup, EuiFlexItem, EuiLoadingSpinner } from "@elastic/eui";
 
 export default function Home() {
   const [usersData, setUsersData] = useState([]); //get all users info
@@ -50,7 +45,18 @@ export default function Home() {
     return newData;
   };
 
-  if (!isPageReady) return <EuiLoadingSpinner size="xxl" />;
+  if (!isPageReady)
+    return (
+      <EuiFlexGroup
+        justifyContent="center"
+        alignItems="center"
+        style={{ height: "100%" }}
+      >
+        <EuiFlexItem grow={false}>
+          <EuiLoadingSpinner size="xxl" />
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    );
 
   return (
     <UserContextProvider users={usersData}>
