@@ -1,4 +1,4 @@
-import "../styles/globals.css";
+import "../styles/globals.scss";
 import "@elastic/eui/dist/eui_theme_light.css";
 
 import { EuiProvider } from "@elastic/eui";

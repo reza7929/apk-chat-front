@@ -14,14 +14,16 @@ const ChatSection = ({ isActiveChat }) => {
     );
 
   return (
-    <EuiFlexGroup justifyContent="center" alignItems="center">
-      <EuiFlexItem>
-        <EuiIcon type="logoElastic" size="xl" style={{ margin: "auto" }} />
-        <EuiText textAlign="center">
-          <p>لطفا یکی از کاربران مقابل را برای ارسال ‍بیام انتخاب کنید</p>
-        </EuiText>
-      </EuiFlexItem>
-    </EuiFlexGroup>
+    <div className="hide_on_mobile">
+      <EuiFlexGroup justifyContent="center" alignItems="center">
+        <EuiFlexItem>
+          <EuiIcon type="logoElastic" size="xl" style={{ margin: "auto" }} />
+          <EuiText textAlign="center">
+            <p>لطفا یکی از کاربران مقابل را برای ارسال ‍بیام انتخاب کنید</p>
+          </EuiText>
+        </EuiFlexItem>
+      </EuiFlexGroup>
+    </div>
   );
 };
 

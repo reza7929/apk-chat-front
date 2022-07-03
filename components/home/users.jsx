@@ -48,29 +48,10 @@ const Users = ({ users, userInfo, setIsActiveChat, setOppositeID }) => {
                   <p>{user.userName}</p>
                 </EuiText>
               </EuiFlexItem>
-              <EuiFlexItem grow={false}>
+              <EuiFlexItem grow={false} className={classes.user_box_icon}>
                 <EuiIcon type={user.isOnline ? "online" : "offline"} />
               </EuiFlexItem>
             </EuiFlexGroup>
-            // <EuiListGroupItem
-            //   key={user.userName}
-            //   label={user.userName}
-            //   iconType="user"
-            //   onClick={() => {
-            //     // active chat section
-            //     setIsActiveChat(true);
-            //     //save clicked user id
-            //     setOppositeID(user.id);
-            //   }}
-            //   extraAction={{
-            //     color: "text",
-            //     iconType: user.isOnline ? "online" : "offline",
-            //     iconSize: "m",
-            //     "aria-label": "Check online box",
-            //     alwaysShow: true,
-            //     isDisabled: true,
-            //   }}
-            // />
           );
         })}
       </div>

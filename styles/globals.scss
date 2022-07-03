@@ -40,3 +40,9 @@ div::-webkit-scrollbar-thumb {
 button {
   margin-bottom: 10px !important;
 }
+div.hide_on_mobile {
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+}

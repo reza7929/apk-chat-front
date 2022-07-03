@@ -69,7 +69,10 @@ export default function Home() {
           <OppositUserContextProvider oppositID={oppositID}>
             <SetisActiveChatContextProvider setIsActiveChat={setIsActiveChat}>
               <EuiFlexGroup style={{ height: "100%" }}>
-                <EuiFlexItem grow={1}>
+                <EuiFlexItem
+                  grow={1}
+                  className={isActiveChat && "hide_on_mobile"}
+                >
                   <Users
                     users={removeElement(usersData, userInfo?.userName)}
                     userInfo={userInfo}

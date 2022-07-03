@@ -3,4 +3,9 @@
     padding: 0 20px;
     border-bottom: 2px solid rgba(0,0,0,0.5);
     margin-bottom: 15px;
+    flex-wrap: nowrap;
+
+    &_icon > svg {
+        margin: 0 0 0 auto;
+    }
 }
