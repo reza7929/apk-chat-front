@@ -10,7 +10,6 @@ import {
   EuiLink,
   EuiLoadingSpinner,
 } from "@elastic/eui";
-import ContainerBox from "../../layouts/auth/container-box";
 
 const RegisterDataSet = ({ setIsRegister, setShowContent }) => {
   const [data, setData] = useState({
