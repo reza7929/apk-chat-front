@@ -2,7 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import Router from "next/router";
 import { api_backend } from "../../utils/constance";
-import { toast, ToastContainer } from "react-nextjs-toast";
 import {
   EuiFieldText,
   EuiFieldPassword,
@@ -18,20 +17,23 @@ const RegisterDataSet = ({ setIsRegister, setShowContent }) => {
     confirmPass: "",
   }); // this will be get the data
   const [isLoading, setIsLoading] = useState(false); // this is for loader
+  const [toasts, setToasts] = useState([]);
   //this function will be run when user clicked on register button
   const handleSubmitBtn = async () => {
     if (!data.userName || !data.pass || !data.confirmPass)
-      return toast.notify("", {
-        duration: 5,
-        type: "info",
-        title: "فیلد نمیتواند خالی باشد",
-      });
+      return setToasts([
+        {
+          color: "danger",
+          text: <p>فیلد نمیتواندخالی باشد</p>,
+        },
+      ]);
     if (data.pass != data.confirmPass)
-      return toast.notify("", {
-        duration: 5,
-        type: "info",
-        title: "پسور ها برابر نیستند",
-      });
+      return setToasts([
+        {
+          color: "danger",
+          text: <p>پسور ها برابر نیستند</p>,
+        },
+      ]);
     setIsLoading(true);
     try {
       const res = await axios.post(api_backend + "/register", {
@@ -42,11 +44,12 @@ const RegisterDataSet = ({ setIsRegister, setShowContent }) => {
       Router.push("/");
     } catch (err) {
       console.log(err);
-      return toast.notify("", {
-        duration: 5,
-        type: "error",
-        title: err.response.data ? err.response.data : "خطای سرور",
-      });
+      return setToasts([
+        {
+          color: "danger",
+          text: <p>{err.response.data ? err.response.data : "خطای سرور"}</p>,
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
@@ -62,7 +65,6 @@ const RegisterDataSet = ({ setIsRegister, setShowContent }) => {
 
   return (
     <>
-      <ToastContainer />
       <form>
         <EuiFieldText
           placeholder="نام کاربری"
@@ -101,6 +103,11 @@ const RegisterDataSet = ({ setIsRegister, setShowContent }) => {
       <EuiLink color="Subdued" onClick={() => handleLoginClick()}>
         حساب کاربری دارید ؟
       </EuiLink>
+      <EuiGlobalToastList
+        toasts={toasts}
+        dismissToast={() => setToasts([])}
+        toastLifeTimeMs={6000}
+      />
     </>
   );
 };

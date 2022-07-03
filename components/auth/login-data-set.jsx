@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { api_backend } from "../../utils/constance";
-import { toast, ToastContainer } from "react-nextjs-toast";
 import Router from "next/router";
 import {
   EuiFieldText,
@@ -9,6 +8,7 @@ import {
   EuiButton,
   EuiLink,
   EuiLoadingSpinner,
+  EuiGlobalToastList,
 } from "@elastic/eui";
 
 const LoginDataSet = ({ setIsRegister, setShowContent }) => {
@@ -17,14 +17,16 @@ const LoginDataSet = ({ setIsRegister, setShowContent }) => {
     pass: "",
   }); // this is for login input data
   const [isLoading, setIsLoading] = useState(false); //this is for loader
+  const [toasts, setToasts] = useState([]);
   //this function will be run when user clicked on login button
   const handleSubmitBtn = async () => {
     if (!data.userName || !data.pass)
-      return toast.notify("", {
-        duration: 5,
-        type: "info",
-        title: "فیلد نمیتواند خالی باشد",
-      });
+      return setToasts([
+        {
+          color: "danger",
+          text: <p>فیلد نمیتواندخالی باشد</p>,
+        },
+      ]);
     setIsLoading(true);
     try {
       const res = await axios.post(api_backend + "/login", {
@@ -35,11 +37,12 @@ const LoginDataSet = ({ setIsRegister, setShowContent }) => {
       Router.push("/");
     } catch (err) {
       console.log(err);
-      return toast.notify("", {
-        duration: 5,
-        type: "error",
-        title: err.response.data ? err.response.data : "خطای سرور",
-      });
+      return setToasts([
+        {
+          color: "danger",
+          text: <p>{err.response.data ? err.response.data : "خطای سرور"}</p>,
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
@@ -55,7 +58,6 @@ const LoginDataSet = ({ setIsRegister, setShowContent }) => {
 
   return (
     <>
-      <ToastContainer />
       <form>
         <EuiFieldText
           placeholder="نام کاربری"
@@ -86,6 +88,11 @@ const LoginDataSet = ({ setIsRegister, setShowContent }) => {
       <EuiLink color="Subdued" onClick={() => handleRegisterClick()}>
         ثبت نام
       </EuiLink>
+      <EuiGlobalToastList
+        toasts={toasts}
+        dismissToast={() => setToasts([])}
+        toastLifeTimeMs={6000}
+      />
     </>
   );
 };
