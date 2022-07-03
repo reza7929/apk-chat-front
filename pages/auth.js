@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import LoginDataSet from "../components/auth/login-data-set";
 import RegisterDataSet from "../components/auth/register-data-set";
 import Head from "next/head";
-import { EuiFlexGroup, EuiFlexItem } from "@elastic/eui";
+import {
+  EuiFlexGroup,
+  EuiFlexItem,
+  EuiPanel,
+  EuiHorizontalRule,
+  EuiText,
+} from "@elastic/eui";
 import classes from "../styles/scss/auth.module.scss";
 
 export default function Auth() {
@@ -25,11 +31,17 @@ export default function Auth() {
         className={classes.container}
       >
         <EuiFlexItem grow={false}>
-          <div
+          <EuiPanel
             className={`${classes.content} ${
               showContent && classes.content_animation
-            }`}
+            } apk-align-center`}
+            paddingSize="m"
           >
+            <EuiText>
+              <h1>{isRegister ? "ثبت نام" : "ورود"}</h1>
+            </EuiText>
+            <EuiHorizontalRule margin="m" />
+
             {isRegister ? (
               <RegisterDataSet
                 setIsRegister={setIsRegister}
@@ -41,7 +53,7 @@ export default function Auth() {
                 setShowContent={setShowContent}
               />
             )}
-          </div>
+          </EuiPanel>
         </EuiFlexItem>
       </EuiFlexGroup>
     </>

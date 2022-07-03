@@ -11,7 +11,6 @@ import {
   UserContextProvider,
 } from "../context";
 import { EuiFlexGroup, EuiFlexItem, EuiLoadingSpinner } from "@elastic/eui";
-import classes from "../styles/scss/index.module.scss";
 
 export default function Home() {
   const [usersData, setUsersData] = useState([]); //get all users info
@@ -69,7 +68,7 @@ export default function Home() {
         <SocketContextProvider socket={socket}>
           <OppositUserContextProvider oppositID={oppositID}>
             <SetisActiveChatContextProvider setIsActiveChat={setIsActiveChat}>
-              <EuiFlexGroup className={classes.wrapper}>
+              <EuiFlexGroup className="apk-h100 apk-margin-auto">
                 <EuiFlexItem
                   grow={1}
                   className={isActiveChat && "hide_on_mobile"}

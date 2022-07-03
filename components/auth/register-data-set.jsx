@@ -8,6 +8,8 @@ import {
   EuiButton,
   EuiLink,
   EuiLoadingSpinner,
+  EuiGlobalToastList,
+  EuiText,
 } from "@elastic/eui";
 
 const RegisterDataSet = ({ setIsRegister, setShowContent }) => {
@@ -101,7 +103,9 @@ const RegisterDataSet = ({ setIsRegister, setShowContent }) => {
         )}
       </form>
       <EuiLink color="Subdued" onClick={() => handleLoginClick()}>
-        حساب کاربری دارید ؟
+        <EuiText>
+          <p>حساب کاربری دارید ؟</p>
+        </EuiText>
       </EuiLink>
       <EuiGlobalToastList
         toasts={toasts}

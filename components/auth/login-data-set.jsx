@@ -9,6 +9,7 @@ import {
   EuiLink,
   EuiLoadingSpinner,
   EuiGlobalToastList,
+  EuiText,
 } from "@elastic/eui";
 
 const LoginDataSet = ({ setIsRegister, setShowContent }) => {
@@ -86,7 +87,9 @@ const LoginDataSet = ({ setIsRegister, setShowContent }) => {
         )}
       </form>
       <EuiLink color="Subdued" onClick={() => handleRegisterClick()}>
-        ثبت نام
+        <EuiText>
+          <p>ثبت نام</p>
+        </EuiText>
       </EuiLink>
       <EuiGlobalToastList
         toasts={toasts}
