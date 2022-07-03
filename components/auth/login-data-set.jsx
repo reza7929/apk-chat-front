@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { api_backend } from "../../utils/constance";
 import { toast, ToastContainer } from "react-nextjs-toast";
 import Router from "next/router";
@@ -10,14 +10,12 @@ import {
   EuiLink,
   EuiLoadingSpinner,
 } from "@elastic/eui";
-import ContainerBox from "../../layouts/auth/container-box";
 
-const LoginDataSet = ({ setIsRegister }) => {
+const LoginDataSet = ({ setIsRegister, setShowContent }) => {
   const [data, setData] = useState({
     userName: "",
     pass: "",
   }); // this is for login input data
-  const [showContent, setShowContent] = useState(false); // this is for animation of the content
   const [isLoading, setIsLoading] = useState(false); //this is for loader
   //this function will be run when user clicked on login button
   const handleSubmitBtn = async () => {
@@ -46,19 +44,17 @@ const LoginDataSet = ({ setIsRegister }) => {
       setIsLoading(false);
     }
   };
-  useEffect(() => {
-    setShowContent(true);
-  }, []);
   //this function will be run when user clicked on have an account text
   const handleRegisterClick = () => {
     setShowContent(false);
     setTimeout(() => {
       setIsRegister(true);
+      setShowContent(true);
     }, 1000);
   };
 
   return (
-    <ContainerBox showContent={showContent}>
+    <>
       <ToastContainer />
       <form>
         <EuiFieldText
@@ -90,7 +86,7 @@ const LoginDataSet = ({ setIsRegister }) => {
       <EuiLink color="Subdued" onClick={() => handleRegisterClick()}>
         ثبت نام
       </EuiLink>
-    </ContainerBox>
+    </>
   );
 };
 
