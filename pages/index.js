@@ -59,30 +59,32 @@ export default function Home() {
     );
 
   return (
-    <UserContextProvider users={usersData}>
-      <SocketContextProvider socket={socket}>
-        <OppositUserContextProvider oppositID={oppositID}>
-          <SetisActiveChatContextProvider setIsActiveChat={setIsActiveChat}>
-            <Head>
-              <title>apk | چت</title>
-              <meta name="description" content="پروژه تست چت" />
-            </Head>
-            <EuiFlexGroup style={{ height: "100%" }}>
-              <EuiFlexItem grow={1}>
-                <Users
-                  users={removeElement(usersData, userInfo?.userName)}
-                  userInfo={userInfo}
-                  setIsActiveChat={setIsActiveChat}
-                  setOppositeID={setOppositeID}
-                />
-              </EuiFlexItem>
-              <EuiFlexItem grow={3}>
-                <ChatSection isActiveChat={isActiveChat} />
-              </EuiFlexItem>
-            </EuiFlexGroup>
-          </SetisActiveChatContextProvider>
-        </OppositUserContextProvider>
-      </SocketContextProvider>
-    </UserContextProvider>
+    <>
+      <Head>
+        <title>apk | چت</title>
+        <meta name="description" content="پروژه تست چت" />
+      </Head>
+      <UserContextProvider users={usersData}>
+        <SocketContextProvider socket={socket}>
+          <OppositUserContextProvider oppositID={oppositID}>
+            <SetisActiveChatContextProvider setIsActiveChat={setIsActiveChat}>
+              <EuiFlexGroup style={{ height: "100%" }}>
+                <EuiFlexItem grow={1}>
+                  <Users
+                    users={removeElement(usersData, userInfo?.userName)}
+                    userInfo={userInfo}
+                    setIsActiveChat={setIsActiveChat}
+                    setOppositeID={setOppositeID}
+                  />
+                </EuiFlexItem>
+                <EuiFlexItem grow={3}>
+                  <ChatSection isActiveChat={isActiveChat} />
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </SetisActiveChatContextProvider>
+          </OppositUserContextProvider>
+        </SocketContextProvider>
+      </UserContextProvider>
+    </>
   );
 }
