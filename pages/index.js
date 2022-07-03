@@ -80,7 +80,7 @@ export default function Home() {
                     setOppositeID={setOppositeID}
                   />
                 </EuiFlexItem>
-                <EuiFlexItem grow={3}>
+                <EuiFlexItem grow={3} style={{ maxHeight: "100%" }}>
                   <ChatSection isActiveChat={isActiveChat} />
                 </EuiFlexItem>
               </EuiFlexGroup>

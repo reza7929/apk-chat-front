@@ -1,0 +1,14 @@
+.flex_box{
+    width: 95%; 
+    margin: auto;
+    flex-wrap: nowrap; 
+}
+div.icon {
+    display: contents;
+    svg.item {
+        margin: 0 10px;
+        @media screen and (min-width: 768px) {
+            margin: 0;
+        }
+    }
+}

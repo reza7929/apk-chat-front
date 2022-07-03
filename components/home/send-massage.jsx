@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { OppositUserContext, SocketContext } from "../../context";
 import { EuiFlexGroup, EuiFlexItem, EuiIcon, EuiTextArea } from "@elastic/eui";
+import classes from "./scss/send-massage.module.scss";
 
 const SendMassage = () => {
   const [massage, setMassage] = useState();
@@ -18,7 +19,7 @@ const SendMassage = () => {
     <EuiFlexGroup
       alignItems="center"
       justifyContent="center"
-      style={{ width: "95%", margin: "auto" }}
+      className={classes.flex_box}
     >
       <EuiFlexItem>
         <EuiTextArea
@@ -30,8 +31,12 @@ const SendMassage = () => {
           onChange={(e) => setMassage(e.target.value)}
         />
       </EuiFlexItem>
-      <EuiFlexItem grow={false} onClick={() => handleSubmitBtn()}>
-        <EuiIcon type="arrowRight" />
+      <EuiFlexItem
+        grow={false}
+        onClick={() => handleSubmitBtn()}
+        className={classes.icon}
+      >
+        <EuiIcon type="arrowRight" className={classes.item} />
       </EuiFlexItem>
     </EuiFlexGroup>
   );
