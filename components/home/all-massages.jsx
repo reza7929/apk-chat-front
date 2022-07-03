@@ -55,7 +55,6 @@ const AllMassages = () => {
       role="region"
       aria-label="scroll box"
       className="eui-yScrollWithShadows"
-      style={{ height: "100%" }}
     >
       {massages?.map((massage, index) => {
         const isOpposit = massage.fromID == oppositID;

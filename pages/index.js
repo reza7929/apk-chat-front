@@ -51,7 +51,7 @@ export default function Home() {
       <EuiFlexGroup
         justifyContent="center"
         alignItems="center"
-        style={{ height: "100%" }}
+        className="apk-h100"
       >
         <EuiFlexItem grow={false}>
           <EuiLoadingSpinner size="xxl" />

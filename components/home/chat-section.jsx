@@ -17,7 +17,7 @@ const ChatSection = ({ isActiveChat }) => {
     <div className="hide_on_mobile">
       <EuiFlexGroup justifyContent="center" alignItems="center">
         <EuiFlexItem>
-          <EuiIcon type="logoElastic" size="xl" style={{ margin: "auto" }} />
+          <EuiIcon type="logoElastic" size="xl" className="apk-margin-auto" />
           <EuiText textAlign="center">
             <p>لطفا یکی از کاربران مقابل را برای ارسال ‍بیام انتخاب کنید</p>
           </EuiText>

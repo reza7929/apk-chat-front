@@ -26,7 +26,6 @@ const Users = ({ users, userInfo, setIsActiveChat, setOppositeID }) => {
         role="region"
         aria-label="scroll box"
         className="eui-yScrollWithShadows"
-        style={{ height: "100%" }}
       >
         {users?.map((user) => {
           return (
