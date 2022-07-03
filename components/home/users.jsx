@@ -21,7 +21,13 @@ const Users = ({ users, userInfo, setIsActiveChat, setOppositeID }) => {
           </h2>
         </EuiTextAlign>
       </EuiTitle>
-      <div>
+      <div
+        tabIndex={0}
+        role="region"
+        aria-label="scroll box"
+        className="eui-yScrollWithShadows"
+        style={{ height: "100%" }}
+      >
         {users?.map((user) => {
           return (
             <EuiFlexGroup
